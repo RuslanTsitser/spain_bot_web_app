@@ -8,16 +8,19 @@ import 'package:spain_bot_web_app/injection.dart';
 
 import 'core/services/export.dart';
 
-void main() => runApp(
-      InjectionServiceWidget(
-        firebaseService: FirebaseServiceImpl(),
-        firebaseAuthService: FirebaseAuthServiceImpl(),
-        firestoreService: FirestoreServiceImpl(),
-        telegramService: TelegramServiceImpl(),
-        urlLauncherService: UrlLauncherServiceImpl(),
-        child: const MainApp(),
-      ),
-    );
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+    InjectionServiceWidget(
+      firebaseService: FirebaseServiceImpl(),
+      firebaseAuthService: FirebaseAuthServiceImpl(),
+      firestoreService: FirestoreServiceImpl(),
+      telegramService: TelegramServiceImpl(),
+      urlLauncherService: UrlLauncherServiceImpl(),
+      child: const MainApp(),
+    ),
+  );
+}
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
@@ -44,7 +47,9 @@ class _MainAppState extends State<MainApp> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const SplashPage();
           } else if (snapshot.hasError) {
-            return const ErrorPage();
+            return ErrorPage(
+              message: snapshot.error.toString(),
+            );
           }
 
           return Provider<BlsSpainRepository>(

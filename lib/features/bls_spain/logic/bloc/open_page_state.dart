@@ -17,5 +17,6 @@ final class OpenPageSuccess extends OpenPageState {
 }
 
 final class OpenPageError extends OpenPageState {
-  const OpenPageError();
+  final String message;
+  const OpenPageError(this.message);
 }

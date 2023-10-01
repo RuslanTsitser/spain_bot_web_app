@@ -16,8 +16,8 @@ class BlsPage extends StatelessWidget {
       child: Scaffold(
         body: BlocBuilder<OpenPageBloc, OpenPageState>(
           builder: (context, state) => switch (state) {
-            OpenPageError() => const Center(
-                child: Text('Error'),
+            OpenPageError() => Center(
+                child: Text(state.message),
               ),
             OpenPageSuccess() => const Center(
                 child: Text('Success'),

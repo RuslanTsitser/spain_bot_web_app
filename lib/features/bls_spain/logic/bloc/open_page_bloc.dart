@@ -18,7 +18,7 @@ class OpenPageBloc extends Bloc<OpenPageEvent, OpenPageState> {
       await blsSpainRepository.openLink();
       emit(const OpenPageSuccess());
     } catch (e) {
-      emit(const OpenPageError());
+      emit(OpenPageError(e.toString()));
     }
   }
 }
