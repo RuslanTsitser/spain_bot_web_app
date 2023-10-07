@@ -16,6 +16,7 @@ class UrlLauncherServiceImpl implements UrlLauncherService {
         'Content-Type': 'application/json',
         'Accept': '*/*',
       }),
+      webOnlyWindowName: '_blank',
     )) {
       throw Exception('Could not launch $url');
     }
